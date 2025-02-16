@@ -1,0 +1,133 @@
+*** USING LINEAR SEARCH ***
+
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 50.00      0.01     0.01  1447939     0.00     0.00  swap
+ 50.00      0.02     0.01    90009     0.00     0.00  quickSortPartition
+  0.00      0.02     0.00  2464177     0.00     0.00  compareInts
+  0.00      0.02     0.00        4     0.00     0.00  linearSearch
+  0.00      0.02     0.00        1     0.00     0.00  print_int_array
+  0.00      0.02     0.00        1     0.00    20.00  quickSort
+  0.00      0.02     0.00        1     0.00    20.00  quickSortRecursive
+
+
+                        Call graph
+
+
+granularity: each sample hit covers 4 byte(s) for 50.00% of 0.02 seconds
+
+index % time    self  children    called     name
+                0.01    0.01   90009/90009       quickSortRecursive [3]
+[1]    100.0    0.01    0.01   90009         quickSortPartition [1]
+                0.01    0.00 1447939/1447939     swap [5]
+                0.00    0.00 2253193/2464177     compareInts [6]
+-----------------------------------------------
+                0.00    0.02       1/1           main [4]
+[2]    100.0    0.00    0.02       1         quickSort [2]
+                0.00    0.02       1/1           quickSortRecursive [3]
+-----------------------------------------------
+                              180018             quickSortRecursive [3]
+                0.00    0.02       1/1           quickSort [2]
+[3]    100.0    0.00    0.02       1+180018  quickSortRecursive [3]
+                0.01    0.01   90009/90009       quickSortPartition [1]
+                              180018             quickSortRecursive [3]
+-----------------------------------------------
+                                                 <spontaneous>
+[4]    100.0    0.00    0.02                 main [4]
+                0.00    0.02       1/1           quickSort [2]
+                0.00    0.00       4/4           linearSearch [7]
+                0.00    0.00       1/1           print_int_array [8]
+-----------------------------------------------
+                0.01    0.00 1447939/1447939     quickSortPartition [1]
+[5]     50.0    0.01    0.00 1447939         swap [5]
+-----------------------------------------------
+                0.00    0.00  210984/2464177     linearSearch [7]
+                0.00    0.00 2253193/2464177     quickSortPartition [1]
+[6]      0.0    0.00    0.00 2464177         compareInts [6]
+-----------------------------------------------
+                0.00    0.00       4/4           main [4]
+[7]      0.0    0.00    0.00       4         linearSearch [7]
+                0.00    0.00  210984/2464177     compareInts [6]
+-----------------------------------------------
+                0.00    0.00       1/1           main [4]
+[8]      0.0    0.00    0.00       1         print_int_array [8]
+-----------------------------------------------
+
+
+Index by function name
+
+   [6] compareInts             [2] quickSort               [5] swap
+   [7] linearSearch            [1] quickSortPartition
+   [8] print_int_array         [3] quickSortRecursive
+
+*** USING BINARY SEARCH ***
+
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 40.00      0.02     0.02  1447939     0.00     0.00  swap
+ 40.00      0.04     0.02    90009     0.00     0.00  quickSortPartition
+ 20.00      0.05     0.01                             _init
+  0.00      0.05     0.00  2253265     0.00     0.00  compareInts
+  0.00      0.05     0.00        4     0.00     0.00  binarySearch
+  0.00      0.05     0.00        1     0.00     0.00  print_int_array
+  0.00      0.05     0.00        1     0.00    40.00  quickSort
+  0.00      0.05     0.00        1     0.00    40.00  quickSortRecursive
+
+
+                        Call graph
+
+
+granularity: each sample hit covers 4 byte(s) for 20.00% of 0.05 seconds
+
+index % time    self  children    called     name
+                0.02    0.02   90009/90009       quickSortRecursive [3]
+[1]     80.0    0.02    0.02   90009         quickSortPartition [1]
+                0.02    0.00 1447939/1447939     swap [5]
+                0.00    0.00 2253193/2253265     compareInts [7]
+-----------------------------------------------
+                0.00    0.04       1/1           main [4]
+[2]     80.0    0.00    0.04       1         quickSort [2]
+                0.00    0.04       1/1           quickSortRecursive [3]
+-----------------------------------------------
+                              180018             quickSortRecursive [3]
+                0.00    0.04       1/1           quickSort [2]
+[3]     80.0    0.00    0.04       1+180018  quickSortRecursive [3]
+                0.02    0.02   90009/90009       quickSortPartition [1]
+                              180018             quickSortRecursive [3]
+-----------------------------------------------
+                                                 <spontaneous>
+[4]     80.0    0.00    0.04                 main [4]
+                0.00    0.04       1/1           quickSort [2]
+                0.00    0.00       4/4           binarySearch [8]
+                0.00    0.00       1/1           print_int_array [9]
+-----------------------------------------------
+                0.02    0.00 1447939/1447939     quickSortPartition [1]
+[5]     40.0    0.02    0.00 1447939         swap [5]
+-----------------------------------------------
+                                                 <spontaneous>
+[6]     20.0    0.01    0.00                 _init [6]
+-----------------------------------------------
+                0.00    0.00      72/2253265     binarySearch [8]
+                0.00    0.00 2253193/2253265     quickSortPartition [1]
+[7]      0.0    0.00    0.00 2253265         compareInts [7]
+-----------------------------------------------
+                0.00    0.00       4/4           main [4]
+[8]      0.0    0.00    0.00       4         binarySearch [8]
+                0.00    0.00      72/2253265     compareInts [7]
+-----------------------------------------------
+                0.00    0.00       1/1           main [4]
+[9]      0.0    0.00    0.00       1         print_int_array [9]
+-----------------------------------------------
+
+
+Index by function name
+
+   [6] _init                   [9] print_int_array         [3] quickSortRecursive
+   [8] binarySearch            [2] quickSort               [5] swap
+   [7] compareInts             [1] quickSortPartition

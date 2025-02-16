@@ -1,0 +1,4 @@
+Structs
+Binary search
+memory allocation
+arrays in structs
